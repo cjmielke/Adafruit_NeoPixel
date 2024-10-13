@@ -51,40 +51,42 @@ void loop() {
     newState = digitalRead(BUTTON_PIN);
     if(newState == LOW) {      // Yes, still low
       if(++mode > 8) mode = 0; // Advance to next mode, wrap around after #8
-      switch(mode) {           // Start the new animation...
-        case 0:
-          colorWipe(strip.Color(  0,   0,   0), 50);    // Black/off
-          break;
-        case 1:
-          colorWipe(strip.Color(255,   0,   0), 50);    // Red
-          break;
-        case 2:
-          colorWipe(strip.Color(  0, 255,   0), 50);    // Green
-          break;
-        case 3:
-          colorWipe(strip.Color(  0,   0, 255), 50);    // Blue
-          break;
-        case 4:
-          theaterChase(strip.Color(127, 127, 127), 50); // White
-          break;
-        case 5:
-          theaterChase(strip.Color(127,   0,   0), 50); // Red
-          break;
-        case 6:
-          theaterChase(strip.Color(  0,   0, 127), 50); // Blue
-          break;
-        case 7:
-          rainbow(10);
-          break;
-        case 8:
-          theaterChaseRainbow(50);
-          break;
-      }
     }
-  }
+  }   // end cycle change if statement
 
   // Set the last-read button state to the old state.
   oldState = newState;
+
+  // now we run the animations, every single loop
+  switch(mode) {           // Start the new animation...
+    case 0:
+      colorWipe(strip.Color(  0,   0,   0), 50);    // Black/off
+      break;
+    case 1:
+      colorWipe(strip.Color(255,   0,   0), 50);    // Red
+      break;
+    case 2:
+      colorWipe(strip.Color(  0, 255,   0), 50);    // Green
+      break;
+    case 3:
+      colorWipe(strip.Color(  0,   0, 255), 50);    // Blue
+      break;
+    case 4:
+      theaterChase(strip.Color(127, 127, 127), 50); // White
+      break;
+    case 5:
+      theaterChase(strip.Color(127,   0,   0), 50); // Red
+      break;
+    case 6:
+      theaterChase(strip.Color(  0,   0, 127), 50); // Blue
+      break;
+    case 7:
+      rainbow(10);
+      break;
+    case 8:
+      theaterChaseRainbow(50);
+      break;
+  } 
 }
 
 // Fill strip pixels one after another with a color. Strip is NOT cleared
